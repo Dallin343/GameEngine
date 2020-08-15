@@ -1,0 +1,51 @@
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/../out/lib")
+include_directories("vendor/spdlog/include")
+include_directories("vendor/glfw/include")
+include_directories(src)
+
+add_subdirectory("vendor/spdlog")
+add_subdirectory("vendor/glfw")
+
+add_library(Krispy
+    SHARED
+        src/Krispy/Core.h
+        src/Krispy.h
+        src/Krispy/Application.cpp
+        src/Krispy/Application.h
+        src/Krispy/Entry.h
+        src/Krispy/Log.cpp
+        src/Krispy/Log.h
+        src/Krispy/Event/Event.h
+        src/Krispy/Event/ApplicationEvent.h
+        src/Krispy/Event/KeyEvent.h
+        src/Krispy/Event/MouseEvent.h
+        src/Platform/Linux/LinuxWindow.cpp
+        src/Platform/Linux/LinuxWindow.h
+        src/Krispy/Window.h
+        )
+
+target_precompile_headers(Krispy
+    PRIVATE
+        <string>
+        <iostream>
+        <sstream>
+        <memory>
+        <utility>
+        <functional>
+        <algorithm>
+        "src/Krispy/Log.h"
+)
+
+if(NOT TARGET spdlog)
+    # Stand-alone build
+    find_library(spdlog REQUIRED)
+endif()
+
+target_link_libraries(Krispy PRIVATE spdlog::spdlog_header_only)
+
+if(NOT TARGET glfw)
+    # Stand-alone build
+    find_package(glfw REQUIRED)
+endif()
+target_link_libraries(Krispy PRIVATE glfw)
+

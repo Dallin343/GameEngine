@@ -1,0 +1,9 @@
+[submodule "Krispy/vendor/spdlog"]
+	path = Krispy/vendor/spdlog
+	url = git@github.com:gabime/spdlog.git
+[submodule "Krispy/vendor/glfw"]
+	path = Krispy/vendor/glfw
+	url = git@github.com:glfw/glfw.git
+[submodule "imgui"]
+	path = imgui
+	url = https://github.com/ocornut/imgui
