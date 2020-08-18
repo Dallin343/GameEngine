@@ -39,6 +39,15 @@ namespace Krispy {
             m_Layers.erase(it);
         }
     }
+
+    std::string LayerStack::ToString() const {
+        std::stringstream ss;
+        ss << "LayerStack: " << m_Layers.size() << " layers in stack." << std::endl;
+        for (Layer *layer : m_Layers) {
+            ss << "-- Layer: " << layer->ToString() << std::endl;
+        }
+        return ss.str();
+    };
 }
 
 

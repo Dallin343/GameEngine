@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "Event.h"
+#include "Krispy/Events/Event.h"
 
 namespace Krispy {
 

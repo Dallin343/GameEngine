@@ -4,10 +4,10 @@
 
 #pragma once
 
-#include "Krispy/Layer.h"
+#include "Layer.h"
 
 namespace Krispy {
-    class LayerStack {
+    class LayerStack: public Debuggable {
     public:
         LayerStack();
         ~LayerStack();
@@ -19,6 +19,9 @@ namespace Krispy {
 
         std::vector<Layer *>::iterator begin() { return m_Layers.begin(); }
         std::vector<Layer *>::iterator end() { return m_Layers.end(); }
+
+        std::string ToString() const override;
+
     private:
         std::vector<Layer *> m_Layers;
         std::vector<Layer *>::iterator m_LayerInsert;

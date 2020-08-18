@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "Krispy/Base.h"
+#include "Base.h"
 #include "Krispy/Events/Event.h"
 
 namespace Krispy {
@@ -32,6 +32,8 @@ namespace Krispy {
 
         virtual unsigned int GetWidth() const = 0;
         virtual unsigned int GetHeight() const = 0;
+
+        virtual void* GetNativeWindow() const = 0;
 
         // Attributes
         virtual void SetEventCallback(const EventCallbackFn& callback) = 0;

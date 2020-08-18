@@ -1,11 +1,12 @@
 #pragma once
 
-#pragma mark --Debug Macros--
+#pragma mark --Debug--
+
 #ifdef KRISPY_DEBUG
-    #if defined(KRISPY_SYS_LINUX)
+    #if defined(KRISPY_PLATFORM_LINUX)
         #include <signal.h>
         #define KRISPY_DEBUGBREAK() raise(SIGTRAP)
-    #elif defined(KRISPY_SYS_UNKNOWN)
+    #elif defined(KRISPY_PLATFORM_UNKNOWN)
     #endif
     #define KRISPY_ENABLE_ASSERTS
 #else
@@ -26,3 +27,9 @@
 #define BIT(x) (1 << x)
 
 #define BIND_EVENT_FN(fn) [this](auto&&... args) -> decltype(auto) {return this->fn(std::forward<decltype(args)>(args)...); }
+
+#pragma mark --Value Defines--
+
+//Used to make it clear whether an event handler reports that the event was handled or not.
+#define KRISPY_EVENT_HANDLED true
+#define KRISPY_EVENT_NOT_HANDLED false

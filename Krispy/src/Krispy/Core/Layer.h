@@ -7,7 +7,7 @@
 #include "Krispy/Events/Event.h"
 
 namespace Krispy {
-    class Layer {
+    class Layer: public Debuggable {
     public:
         Layer(const std::string& name = "Layer");
         virtual ~Layer() {};
@@ -16,8 +16,12 @@ namespace Krispy {
         virtual void OnDetach() {}
         virtual void OnUpdate() {}
         virtual void OnEvent(Event& event) {}
+        virtual void OnImGuiRender() {}
 
-        inline const std::string& GetName() { return m_Name; }
+        inline const std::string& GetName() const { return m_Name; }
+
+        std::string ToString() const override { return GetName(); };
+
     protected:
         std::string m_Name;
     };

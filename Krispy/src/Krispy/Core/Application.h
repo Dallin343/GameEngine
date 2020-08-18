@@ -3,11 +3,12 @@
 //
 #pragma once
 
-#include "Krispy/Window.h"
+#include "Krispy/Core/Window.h"
 
 #include "Krispy/Events/Event.h"
 #include "Krispy/Events/ApplicationEvent.h"
-#include "Krispy/LayerStack.h"
+#include "Krispy/ImGui/ImGuiLayer.h"
+#include "Krispy/Core/LayerStack.h"
 
 namespace Krispy {
     class Application {
@@ -15,13 +16,16 @@ namespace Krispy {
         Application();
         virtual ~Application();
 
-        inline Application* Get() const { return s_Instance; }
+        static Application& Get() { return *s_Instance; }
+
+        inline Window& GetWindow() { return *m_Window; }
+
         void Run();
 
         void OnEvent(Event& event);
 
         void PushLayer(Layer* layer);
-        void PushOverlay(Layer* layer);
+        void PushOverlay(Layer* overlay);
     private:
         bool OnWindowClose(WindowCloseEvent& event);
         bool OnWindowResize(WindowResizeEvent& event);
@@ -30,9 +34,10 @@ namespace Krispy {
         bool m_Running = true;
 
         LayerStack m_LayerStack;
+        ImGuiLayer* m_ImGuiLayer;
 
     private:
-        Application* s_Instance;
+        static Application* s_Instance;
     };
 
     //To be defined in client
