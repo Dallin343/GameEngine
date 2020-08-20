@@ -10,6 +10,8 @@
 #include "Krispy/ImGui/ImGuiLayer.h"
 #include "Krispy/Core/LayerStack.h"
 
+#include "Krispy/Renderer/Shader.h"
+
 namespace Krispy {
     class Application {
     public:
@@ -36,7 +38,9 @@ namespace Krispy {
         LayerStack m_LayerStack;
         ImGuiLayer* m_ImGuiLayer;
 
-        unsigned int m_VertexBuffer, m_VertextArray, m_IndexBuffer;
+        unsigned int m_VertexBuffer, m_VertexArray, m_IndexBuffer;
+
+        std::unique_ptr<Shader> m_Shader;
     private:
         static Application* s_Instance;
     };

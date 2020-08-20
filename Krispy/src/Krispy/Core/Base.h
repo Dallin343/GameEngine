@@ -8,7 +8,7 @@
         #define KRISPY_DEBUGBREAK() raise(SIGTRAP)
     #elif defined(KRISPY_PLATFORM_UNKNOWN)
     #endif
-    #define KRISPY_ENABLE_ASSERTS
+    #define KRISPY_ENABLE_ASSERTS 1
 #else
     #define KRISPY_DEBUGBREAK()
 #endif

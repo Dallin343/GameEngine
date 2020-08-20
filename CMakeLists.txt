@@ -11,32 +11,6 @@ include_directories(Krispy/vendor/imgui/)
 include_directories(Krispy/vendor/glm/)
 include_directories(Krispy/src)
 
-set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
-set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
-set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
-add_subdirectory(Krispy/vendor/glfw)
-
-add_subdirectory(Krispy/vendor/glm)
-
-add_library(GLAD STATIC Krispy/vendor/glad/src/glad.c Krispy/vendor/glad/include/glad/glad.h)
-
-add_library(ImGui STATIC
-        Krispy/vendor/imgui/imconfig.h
-        Krispy/vendor/imgui/imgui.cpp
-        Krispy/vendor/imgui/imgui.h
-        Krispy/vendor/imgui/imgui_draw.cpp
-        Krispy/vendor/imgui/imgui_internal.h
-        Krispy/vendor/imgui/imgui_widgets.cpp
-        Krispy/vendor/imgui/imstb_rectpack.h
-        Krispy/vendor/imgui/imstb_textedit.h
-        Krispy/vendor/imgui/imstb_truetype.h
-        Krispy/vendor/imgui/imgui_demo.cpp
-        Krispy/vendor/imgui/examples/imgui_impl_opengl3.h
-        Krispy/vendor/imgui/examples/imgui_impl_opengl3.cpp
-        Krispy/vendor/imgui/examples/imgui_impl_glfw.h
-        Krispy/vendor/imgui/examples/imgui_impl_glfw.cpp
-)
-
 add_library(Krispy
         STATIC
         Krispy/src/Krispy/Core/Base.h
@@ -68,6 +42,33 @@ add_library(Krispy
         Krispy/src/Platform/OpenGL/OpenGlContext.h
         Krispy/src/Platform/OpenGL/OpenGlContext.cpp
         Krispy/src/Krispy/Renderer/GraphicsContext.h
+        Krispy/src/Krispy/Renderer/Shader.cpp Krispy/src/Krispy/Renderer/Shader.h)
+
+
+set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
+set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
+set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+add_subdirectory(Krispy/vendor/glfw)
+
+add_subdirectory(Krispy/vendor/glm)
+
+add_library(GLAD STATIC Krispy/vendor/glad/src/glad.c Krispy/vendor/glad/include/glad/glad.h)
+
+add_library(ImGui STATIC
+        Krispy/vendor/imgui/imconfig.h
+        Krispy/vendor/imgui/imgui.cpp
+        Krispy/vendor/imgui/imgui.h
+        Krispy/vendor/imgui/imgui_draw.cpp
+        Krispy/vendor/imgui/imgui_internal.h
+        Krispy/vendor/imgui/imgui_widgets.cpp
+        Krispy/vendor/imgui/imstb_rectpack.h
+        Krispy/vendor/imgui/imstb_textedit.h
+        Krispy/vendor/imgui/imstb_truetype.h
+        Krispy/vendor/imgui/imgui_demo.cpp
+        Krispy/vendor/imgui/examples/imgui_impl_opengl3.h
+        Krispy/vendor/imgui/examples/imgui_impl_opengl3.cpp
+        Krispy/vendor/imgui/examples/imgui_impl_glfw.h
+        Krispy/vendor/imgui/examples/imgui_impl_glfw.cpp
         )
 
 target_precompile_headers(Krispy
@@ -81,6 +82,7 @@ target_precompile_headers(Krispy
         <algorithm>
         <vector>
         <cstdint>
+        Krispy/src/Krispy/Core/Base.h
         Krispy/src/Krispy/Debug/Debuggable.h
         Krispy/src/Krispy/Core/Log.h
         )
