@@ -10,6 +10,8 @@
 #define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
 
+#include "Krispy/Renderer/GraphicsContext.h"
+
 namespace Krispy {
     class LinuxWindow: public Window {
     public:
@@ -43,5 +45,7 @@ namespace Krispy {
         };
 
         WindowData m_Data;
+
+        GraphicsContext* m_Context;
     };
 }

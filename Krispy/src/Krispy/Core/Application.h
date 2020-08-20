@@ -36,6 +36,7 @@ namespace Krispy {
         LayerStack m_LayerStack;
         ImGuiLayer* m_ImGuiLayer;
 
+        unsigned int m_VertexBuffer, m_VertextArray, m_IndexBuffer;
     private:
         static Application* s_Instance;
     };

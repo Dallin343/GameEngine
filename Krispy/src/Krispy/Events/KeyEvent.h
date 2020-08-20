@@ -4,23 +4,24 @@
 
 #pragma once
 
+#include "Krispy/Core/Input.h"
 #include "Krispy/Events/Event.h"
 
 namespace Krispy {
     class KeyEvent: public Event {
     public:
-        inline int GetKeyCode() const { return m_KeyCode; }
+        inline KeyCode GetKeyCode() const { return m_KeyCode; }
 
         EVENT_CLASS_CATEGORY(EventCategoryKeyboard | EventCategoryInput)
     protected:
-        KeyEvent(int keycode) : m_KeyCode(keycode) {}
+        KeyEvent(KeyCode keycode) : m_KeyCode(keycode) {}
 
-        int m_KeyCode;
+        KeyCode m_KeyCode;
     };
 
     class KeyPressedEvent: public KeyEvent {
     public:
-        KeyPressedEvent(int keycode, bool repeat) : KeyEvent(keycode), m_Repeat(repeat) {}
+        KeyPressedEvent(KeyCode keycode, bool repeat) : KeyEvent(keycode), m_Repeat(repeat) {}
 
         inline int IsRepeat() const { return m_Repeat; }
 
@@ -38,7 +39,7 @@ namespace Krispy {
 
     class KeyReleasedEvent: public KeyEvent {
     public:
-        KeyReleasedEvent(int keycode) : KeyEvent(keycode) {}
+        KeyReleasedEvent(KeyCode keycode) : KeyEvent(keycode) {}
 
         std::string ToString() const override {
             std::stringstream ss;
@@ -51,7 +52,7 @@ namespace Krispy {
 
     class KeyTypedEvent: public KeyEvent {
     public:
-        KeyTypedEvent(int keycode) : KeyEvent(keycode) {}
+        KeyTypedEvent(KeyCode keycode) : KeyEvent(keycode) {}
 
         std::string ToString() const override {
             std::stringstream ss;

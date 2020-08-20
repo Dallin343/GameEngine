@@ -4,6 +4,8 @@
 
 #pragma once
 
+#include <sstream>
+
 #include "Krispy/Core/Base.h"
 #include "Krispy/Debug/Debuggable.h"
 

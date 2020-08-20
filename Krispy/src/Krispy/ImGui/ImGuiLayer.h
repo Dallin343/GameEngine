@@ -6,6 +6,10 @@
 
 #include "Krispy/Core/Layer.h"
 
+#include "Krispy/Events/ApplicationEvent.h"
+#include "Krispy/Events/MouseEvent.h"
+#include "Krispy/Events/KeyEvent.h"
+
 namespace Krispy {
     class ImGuiLayer : public Layer {
     public:

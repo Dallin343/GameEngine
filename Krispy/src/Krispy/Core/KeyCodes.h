@@ -136,135 +136,138 @@ namespace Krispy {
         RightAlt = 346,
         RightMeta = 347,
         Menu = 348
-    };
+    } Key;
+
+    inline std::ostream& operator<<(std::ostream& os, KeyCode keycode) {
+        os << static_cast<int32_t>(keycode);
+        return os;
+    }
 }
 
-/* The unknown key */
-#define KRISPY_KEY_UNKNOWN            -1
-
 /* Printable keys */
-#define KRISPY_KEY_SPACE              32
-#define KRISPY_KEY_APOSTROPHE         39  /* ' */
-#define KRISPY_KEY_COMMA              44  /* , */
-#define KRISPY_KEY_MINUS              45  /* - */
-#define KRISPY_KEY_PERIOD             46  /* . */
-#define KRISPY_KEY_SLASH              47  /* / */
-#define KRISPY_KEY_0                  48
-#define KRISPY_KEY_1                  49
-#define KRISPY_KEY_2                  50
-#define KRISPY_KEY_3                  51
-#define KRISPY_KEY_4                  52
-#define KRISPY_KEY_5                  53
-#define KRISPY_KEY_6                  54
-#define KRISPY_KEY_7                  55
-#define KRISPY_KEY_8                  56
-#define KRISPY_KEY_9                  57
-#define KRISPY_KEY_SEMICOLON          59  /* ; */
-#define KRISPY_KEY_EQUAL              61  /* = */
-#define KRISPY_KEY_A                  65
-#define KRISPY_KEY_B                  66
-#define KRISPY_KEY_C                  67
-#define KRISPY_KEY_D                  68
-#define KRISPY_KEY_E                  69
-#define KRISPY_KEY_F                  70
-#define KRISPY_KEY_G                  71
-#define KRISPY_KEY_H                  72
-#define KRISPY_KEY_I                  73
-#define KRISPY_KEY_J                  74
-#define KRISPY_KEY_K                  75
-#define KRISPY_KEY_L                  76
-#define KRISPY_KEY_M                  77
-#define KRISPY_KEY_N                  78
-#define KRISPY_KEY_O                  79
-#define KRISPY_KEY_P                  80
-#define KRISPY_KEY_Q                  81
-#define KRISPY_KEY_R                  82
-#define KRISPY_KEY_S                  83
-#define KRISPY_KEY_T                  84
-#define KRISPY_KEY_U                  85
-#define KRISPY_KEY_V                  86
-#define KRISPY_KEY_W                  87
-#define KRISPY_KEY_X                  88
-#define KRISPY_KEY_Y                  89
-#define KRISPY_KEY_Z                  90
-#define KRISPY_KEY_LEFT_BRACKET       91  /* [ */
-#define KRISPY_KEY_BACKSLASH          92  /* \ */
-#define KRISPY_KEY_RIGHT_BRACKET      93  /* ] */
-#define KRISPY_KEY_GRAVE_ACCENT       96  /* ` */
-#define KRISPY_KEY_WORLD_1            161 /* non-US #1 */
-#define KRISPY_KEY_WORLD_2            162 /* non-US #2 */
+#define KRISPY_KEY_SPACE              ::Krispy::Key::Space
+#define KRISPY_KEY_APOSTROPHE         ::Krispy::Key::Apostrophe          /* ' */
+#define KRISPY_KEY_COMMA              ::Krispy::Key::Comma               /* , */
+#define KRISPY_KEY_MINUS              ::Krispy::Key::Minus               /* - */
+#define KRISPY_KEY_PERIOD             ::Krispy::Key::Period              /* . */
+#define KRISPY_KEY_SLASH              ::Krispy::Key::Slash               /* / */
+#define KRISPY_KEY_0                  ::Krispy::Key::D0
+#define KRISPY_KEY_1                  ::Krispy::Key::D1
+#define KRISPY_KEY_2                  ::Krispy::Key::D2
+#define KRISPY_KEY_3                  ::Krispy::Key::D3
+#define KRISPY_KEY_4                  ::Krispy::Key::D4
+#define KRISPY_KEY_5                  ::Krispy::Key::D5
+#define KRISPY_KEY_6                  ::Krispy::Key::D6
+#define KRISPY_KEY_7                  ::Krispy::Key::D7
+#define KRISPY_KEY_8                  ::Krispy::Key::D8
+#define KRISPY_KEY_9                  ::Krispy::Key::D9
+#define KRISPY_KEY_SEMICOLON          ::Krispy::Key::Semicolon           /* ; */
+#define KRISPY_KEY_EQUAL              ::Krispy::Key::Equal               /* = */
+#define KRISPY_KEY_A                  ::Krispy::Key::A
+#define KRISPY_KEY_B                  ::Krispy::Key::B
+#define KRISPY_KEY_C                  ::Krispy::Key::C
+#define KRISPY_KEY_D                  ::Krispy::Key::D
+#define KRISPY_KEY_E                  ::Krispy::Key::E
+#define KRISPY_KEY_F                  ::Krispy::Key::F
+#define KRISPY_KEY_G                  ::Krispy::Key::G
+#define KRISPY_KEY_H                  ::Krispy::Key::H
+#define KRISPY_KEY_I                  ::Krispy::Key::I
+#define KRISPY_KEY_J                  ::Krispy::Key::J
+#define KRISPY_KEY_K                  ::Krispy::Key::K
+#define KRISPY_KEY_L                  ::Krispy::Key::L
+#define KRISPY_KEY_M                  ::Krispy::Key::M
+#define KRISPY_KEY_N                  ::Krispy::Key::N
+#define KRISPY_KEY_O                  ::Krispy::Key::O
+#define KRISPY_KEY_P                  ::Krispy::Key::P
+#define KRISPY_KEY_Q                  ::Krispy::Key::Q
+#define KRISPY_KEY_R                  ::Krispy::Key::R
+#define KRISPY_KEY_S                  ::Krispy::Key::S
+#define KRISPY_KEY_T                  ::Krispy::Key::T
+#define KRISPY_KEY_U                  ::Krispy::Key::U
+#define KRISPY_KEY_V                  ::Krispy::Key::V
+#define KRISPY_KEY_W                  ::Krispy::Key::W
+#define KRISPY_KEY_X                  ::Krispy::Key::X
+#define KRISPY_KEY_Y                  ::Krispy::Key::Y
+#define KRISPY_KEY_Z                  ::Krispy::Key::Z
+#define KRISPY_KEY_LEFT_BRACKET       ::Krispy::Key::LeftBracket        /* [ */
+#define KRISPY_KEY_BACKSLASH          ::Krispy::Key::Backslash           /* \ */
+#define KRISPY_KEY_RIGHT_BRACKET      ::Krispy::Key::RightBracket       /* ] */
+#define KRISPY_KEY_GRAVE_ACCENT       ::Krispy::Key::GraveAccent        /* ` */
+#define KRISPY_KEY_WORLD_1            ::Krispy::Key::World1            /* non-US #1 */
+#define KRISPY_KEY_WORLD_2            ::Krispy::Key::World2            /* non-US #2 */
 
 /* Function keys */
-#define KRISPY_KEY_ESCAPE             256
-#define KRISPY_KEY_ENTER              257
-#define KRISPY_KEY_TAB                258
-#define KRISPY_KEY_BACKSPACE          259
-#define KRISPY_KEY_INSERT             260
-#define KRISPY_KEY_DELETE             261
-#define KRISPY_KEY_RIGHT              262
-#define KRISPY_KEY_LEFT               263
-#define KRISPY_KEY_DOWN               264
-#define KRISPY_KEY_UP                 265
-#define KRISPY_KEY_PAGE_UP            266
-#define KRISPY_KEY_PAGE_DOWN          267
-#define KRISPY_KEY_HOME               268
-#define KRISPY_KEY_END                269
-#define KRISPY_KEY_CAPS_LOCK          280
-#define KRISPY_KEY_SCROLL_LOCK        281
-#define KRISPY_KEY_NUM_LOCK           282
-#define KRISPY_KEY_PRINT_SCREEN       283
-#define KRISPY_KEY_PAUSE              284
-#define KRISPY_KEY_F1                 290
-#define KRISPY_KEY_F2                 291
-#define KRISPY_KEY_F3                 292
-#define KRISPY_KEY_F4                 293
-#define KRISPY_KEY_F5                 294
-#define KRISPY_KEY_F6                 295
-#define KRISPY_KEY_F7                 296
-#define KRISPY_KEY_F8                 297
-#define KRISPY_KEY_F9                 298
-#define KRISPY_KEY_F10                299
-#define KRISPY_KEY_F11                300
-#define KRISPY_KEY_F12                301
-#define KRISPY_KEY_F13                302
-#define KRISPY_KEY_F14                303
-#define KRISPY_KEY_F15                304
-#define KRISPY_KEY_F16                305
-#define KRISPY_KEY_F17                306
-#define KRISPY_KEY_F18                307
-#define KRISPY_KEY_F19                308
-#define KRISPY_KEY_F20                309
-#define KRISPY_KEY_F21                310
-#define KRISPY_KEY_F22                311
-#define KRISPY_KEY_F23                312
-#define KRISPY_KEY_F24                313
-#define KRISPY_KEY_F25                314
-#define KRISPY_KEY_KP_0               320
-#define KRISPY_KEY_KP_1               321
-#define KRISPY_KEY_KP_2               322
-#define KRISPY_KEY_KP_3               323
-#define KRISPY_KEY_KP_4               324
-#define KRISPY_KEY_KP_5               325
-#define KRISPY_KEY_KP_6               326
-#define KRISPY_KEY_KP_7               327
-#define KRISPY_KEY_KP_8               328
-#define KRISPY_KEY_KP_9               329
-#define KRISPY_KEY_KP_DECIMAL         330
-#define KRISPY_KEY_KP_DIVIDE          331
-#define KRISPY_KEY_KP_MULTIPLY        332
-#define KRISPY_KEY_KP_SUBTRACT        333
-#define KRISPY_KEY_KP_ADD             334
-#define KRISPY_KEY_KP_ENTER           335
-#define KRISPY_KEY_KP_EQUAL           336
-#define KRISPY_KEY_LEFT_SHIFT         340
-#define KRISPY_KEY_LEFT_CONTROL       341
-#define KRISPY_KEY_LEFT_ALT           342
-#define KRISPY_KEY_LEFT_SUPER         343
-#define KRISPY_KEY_RIGHT_SHIFT        344
-#define KRISPY_KEY_RIGHT_CONTROL      345
-#define KRISPY_KEY_RIGHT_ALT          346
-#define KRISPY_KEY_RIGHT_SUPER        347
-#define KRISPY_KEY_MENU               348
+#define KRISPY_KEY_ESCAPE             ::Krispy::Key::Escape
+#define KRISPY_KEY_ENTER              ::Krispy::Key::Enter
+#define KRISPY_KEY_TAB                ::Krispy::Key::Tab
+#define KRISPY_KEY_BACKSPACE          ::Krispy::Key::Backspace
+#define KRISPY_KEY_INSERT             ::Krispy::Key::Insert
+#define KRISPY_KEY_DELETE             ::Krispy::Key::Delete
+#define KRISPY_KEY_RIGHT              ::Krispy::Key::Right
+#define KRISPY_KEY_LEFT               ::Krispy::Key::Left
+#define KRISPY_KEY_DOWN               ::Krispy::Key::Down
+#define KRISPY_KEY_UP                 ::Krispy::Key::Up
+#define KRISPY_KEY_PAGE_UP            ::Krispy::Key::PageUp
+#define KRISPY_KEY_PAGE_DOWN          ::Krispy::Key::PageDown
+#define KRISPY_KEY_HOME               ::Krispy::Key::Home
+#define KRISPY_KEY_END                ::Krispy::Key::End
+#define KRISPY_KEY_CAPS_LOCK          ::Krispy::Key::CapsLock
+#define KRISPY_KEY_SCROLL_LOCK        ::Krispy::Key::ScrollLock
+#define KRISPY_KEY_NUM_LOCK           ::Krispy::Key::NumLock
+#define KRISPY_KEY_PRINT_SCREEN       ::Krispy::Key::PrintScreen
+#define KRISPY_KEY_PAUSE              ::Krispy::Key::Pause
+#define KRISPY_KEY_F1                 ::Krispy::Key::F1
+#define KRISPY_KEY_F2                 ::Krispy::Key::F2
+#define KRISPY_KEY_F3                 ::Krispy::Key::F3
+#define KRISPY_KEY_F4                 ::Krispy::Key::F4
+#define KRISPY_KEY_F5                 ::Krispy::Key::F5
+#define KRISPY_KEY_F6                 ::Krispy::Key::F6
+#define KRISPY_KEY_F7                 ::Krispy::Key::F7
+#define KRISPY_KEY_F8                 ::Krispy::Key::F8
+#define KRISPY_KEY_F9                 ::Krispy::Key::F9
+#define KRISPY_KEY_F10                ::Krispy::Key::F10
+#define KRISPY_KEY_F11                ::Krispy::Key::F11
+#define KRISPY_KEY_F12                ::Krispy::Key::F12
+#define KRISPY_KEY_F13                ::Krispy::Key::F13
+#define KRISPY_KEY_F14                ::Krispy::Key::F14
+#define KRISPY_KEY_F15                ::Krispy::Key::F15
+#define KRISPY_KEY_F16                ::Krispy::Key::F16
+#define KRISPY_KEY_F17                ::Krispy::Key::F17
+#define KRISPY_KEY_F18                ::Krispy::Key::F18
+#define KRISPY_KEY_F19                ::Krispy::Key::F19
+#define KRISPY_KEY_F20                ::Krispy::Key::F20
+#define KRISPY_KEY_F21                ::Krispy::Key::F21
+#define KRISPY_KEY_F22                ::Krispy::Key::F22
+#define KRISPY_KEY_F23                ::Krispy::Key::F23
+#define KRISPY_KEY_F24                ::Krispy::Key::F24
+#define KRISPY_KEY_F25                ::Krispy::Key::F25
+#define KRISPY_KEY_KP_0               ::Krispy::Key::KP0
+#define KRISPY_KEY_KP_1               ::Krispy::Key::KP1
+#define KRISPY_KEY_KP_2               ::Krispy::Key::KP2
+#define KRISPY_KEY_KP_3               ::Krispy::Key::KP3
+#define KRISPY_KEY_KP_4               ::Krispy::Key::KP4
+#define KRISPY_KEY_KP_5               ::Krispy::Key::KP5
+#define KRISPY_KEY_KP_6               ::Krispy::Key::KP6
+#define KRISPY_KEY_KP_7               ::Krispy::Key::KP7
+#define KRISPY_KEY_KP_8               ::Krispy::Key::KP8
+#define KRISPY_KEY_KP_9               ::Krispy::Key::KP9
+#define KRISPY_KEY_KP_DECIMAL         ::Krispy::Key::KPDecimal
+#define KRISPY_KEY_KP_DIVIDE          ::Krispy::Key::KPDivide
+#define KRISPY_KEY_KP_MULTIPLY        ::Krispy::Key::KPMultiply
+#define KRISPY_KEY_KP_SUBTRACT        ::Krispy::Key::KPSubtract
+#define KRISPY_KEY_KP_ADD             ::Krispy::Key::KPAdd
+#define KRISPY_KEY_KP_ENTER           ::Krispy::Key::KPEnter
+#define KRISPY_KEY_KP_EQUAL           ::Krispy::Key::KPEqual
+#define KRISPY_KEY_LEFT_SHIFT         ::Krispy::Key::LeftShift
+#define KRISPY_KEY_LEFT_CONTROL       ::Krispy::Key::LeftControl
+#define KRISPY_KEY_LEFT_ALT           ::Krispy::Key::LeftAlt
+#define KRISPY_KEY_LEFT_SUPER         ::Krispy::Key::LeftMeta
+#define KRISPY_KEY_RIGHT_SHIFT        ::Krispy::Key::Rightshift
+#define KRISPY_KEY_RIGHT_CONTROL      ::Krispy::Key::RightControl
+#define KRISPY_KEY_RIGHT_ALT          ::Krispy::Key::RightAlt
+#define KRISPY_KEY_RIGHT_SUPER        ::Krispy::Key::RightMeta
+#define KRISPY_KEY_MENU               ::Krispy::Key::Menu
+
 
 /*! @defgroup mods Modifier key flags
  *  @brief Modifier key flags.

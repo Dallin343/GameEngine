@@ -3,11 +3,18 @@
 //
 
 #pragma once
+#include "Krispy/Core/KeyCodes.h"
+#include "Krispy/Core/MouseCodes.h"
 
 namespace Krispy {
     class Input {
     public:
-        virtual bool IsKeyPressed(int keycode) = 0;
-        virtual bool IsMouseButtonPressed(int mousecode) = 0;
+        static bool IsKeyPressed(KeyCode keycode);
+        static bool IsMouseButtonPressed(MouseCode mousecode);
+
+        static std::pair<float, float> GetMousePosition();
+
+        static float GetMouseX();
+        static float GetMouseY();
     };
 }
