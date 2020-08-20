@@ -8,12 +8,15 @@ include_directories(Krispy/vendor/spdlog/include)
 include_directories(Krispy/vendor/glfw/include)
 include_directories(Krispy/vendor/glad/include)
 include_directories(Krispy/vendor/imgui/)
+include_directories(Krispy/vendor/glm/)
 include_directories(Krispy/src)
 
 set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 add_subdirectory(Krispy/vendor/glfw)
+
+add_subdirectory(Krispy/vendor/glm)
 
 add_library(GLAD STATIC Krispy/vendor/glad/src/glad.c Krispy/vendor/glad/include/glad/glad.h)
 
@@ -57,7 +60,15 @@ add_library(Krispy
         Krispy/src/Krispy/Debug/Debuggable.h
         Krispy/src/Krispy/ImGui/ImGuiLayer.cpp
         Krispy/src/Krispy/ImGui/ImGuiLayer.h
-        Krispy/src/Krispy/ImGui/ImGuiBuild.cpp Krispy/src/Krispy/Core/KeyCodes.h Krispy/src/Krispy/Core/Mousecodes.h Krispy/src/Krispy/Core/Input.h)
+        Krispy/src/Krispy/ImGui/ImGuiBuild.cpp
+        Krispy/src/Krispy/Core/KeyCodes.h
+        Krispy/src/Krispy/Core/MouseCodes.h
+        Krispy/src/Krispy/Core/Input.h
+        Krispy/src/Platform/Linux/LinuxInput.cpp
+        Krispy/src/Platform/OpenGL/OpenGlContext.h
+        Krispy/src/Platform/OpenGL/OpenGlContext.cpp
+        Krispy/src/Krispy/Renderer/GraphicsContext.h
+        )
 
 target_precompile_headers(Krispy
         PRIVATE
@@ -75,11 +86,11 @@ target_precompile_headers(Krispy
         )
 
 find_package(OpenGL REQUIRED)
-target_link_libraries(Krispy PRIVATE glfw OpenGL::GL GLAD ImGui)
+target_link_libraries(Krispy PRIVATE glfw OpenGL::GL GLAD ImGui glm::glm)
 
 # Sandbox
 add_executable(Sandbox sandbox/main.cpp)
-target_link_libraries(Sandbox PRIVATE Krispy)
+target_link_libraries(Sandbox PRIVATE Krispy glm::glm)
 
 
 # Platform Specific Options

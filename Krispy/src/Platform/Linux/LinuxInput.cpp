@@ -2,8 +2,6 @@
 // Created by dallin on 8/19/20.
 //
 
-#pragma once
-
 #include "Krispy/Core/Input.h"
 #include "Krispy/Core/Application.h"
 
