@@ -4,6 +4,7 @@
 
 #include "Krispy/Core/Base.h"
 #include "Platform/OpenGL/OpenGlContext.h"
+#include "Krispy/Debug/OpenGLDebug.h"
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -21,6 +22,7 @@ namespace Krispy {
         glfwMakeContextCurrent(m_Window);
         int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
         KRISPY_CORE_ASSERT(status, "Could not initialize GLAD!");
+        OpenGLDebug::enableGLDebug();
     }
 
     void OpenGLContext::SwapBuffers() {

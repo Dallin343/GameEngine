@@ -4,12 +4,14 @@ project(Krispy)
 set(CMAKE_CXX_STANDARD 17)
 
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/out/lib")
-include_directories(Krispy/vendor/spdlog/include)
-include_directories(Krispy/vendor/glfw/include)
-include_directories(Krispy/vendor/glad/include)
-include_directories(Krispy/vendor/imgui/)
-include_directories(Krispy/vendor/glm/)
-include_directories(Krispy/src)
+include_directories(
+        Krispy/vendor/spdlog/include
+        Krispy/vendor/glfw/include
+        Krispy/vendor/glad/include
+        Krispy/vendor/imgui
+        Krispy/vendor/glm
+        Krispy/src
+)
 
 add_library(Krispy
         STATIC
@@ -42,7 +44,19 @@ add_library(Krispy
         Krispy/src/Platform/OpenGL/OpenGlContext.h
         Krispy/src/Platform/OpenGL/OpenGlContext.cpp
         Krispy/src/Krispy/Renderer/GraphicsContext.h
-        Krispy/src/Krispy/Renderer/Shader.cpp Krispy/src/Krispy/Renderer/Shader.h)
+        Krispy/src/Krispy/Renderer/Shader.cpp
+        Krispy/src/Krispy/Renderer/Shader.h
+        Krispy/src/Krispy/Renderer/Buffer.cpp
+        Krispy/src/Krispy/Renderer/Buffer.h
+        Krispy/src/Krispy/Renderer/Renderer.cpp
+        Krispy/src/Krispy/Renderer/Renderer.h
+        Krispy/src/Platform/OpenGL/OpenGlBuffer.cpp
+        Krispy/src/Platform/OpenGL/OpenGlBuffer.h
+        Krispy/src/Krispy/Renderer/VertexArray.cpp
+        Krispy/src/Krispy/Renderer/VertexArray.h
+        Krispy/src/Platform/OpenGL/OpenGlVertexArray.cpp
+        Krispy/src/Platform/OpenGL/OpenGlVertexArray.h
+        Krispy/src/Krispy/Debug/OpenGLDebug.cpp Krispy/src/Krispy/Debug/OpenGLDebug.h)
 
 
 set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)

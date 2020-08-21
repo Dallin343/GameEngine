@@ -3,6 +3,7 @@
 //
 #pragma once
 
+
 #include "Krispy/Core/Window.h"
 
 #include "Krispy/Events/Event.h"
@@ -11,6 +12,8 @@
 #include "Krispy/Core/LayerStack.h"
 
 #include "Krispy/Renderer/Shader.h"
+#include "Krispy/Renderer/Buffer.h"
+#include "Krispy/Renderer/VertexArray.h"
 
 namespace Krispy {
     class Application {
@@ -38,8 +41,7 @@ namespace Krispy {
         LayerStack m_LayerStack;
         ImGuiLayer* m_ImGuiLayer;
 
-        unsigned int m_VertexBuffer, m_VertexArray, m_IndexBuffer;
-
+        std::shared_ptr<VertexArray> m_VertexArray;
         std::unique_ptr<Shader> m_Shader;
     private:
         static Application* s_Instance;

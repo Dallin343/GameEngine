@@ -1,7 +1,9 @@
 //
 // Created by dallin on 8/12/20.
 //
-
+#ifdef KRISPY_DEBUG
+#define DEBUG_WINDOW_HINT() glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GLFW_TRUE)
+#endif
 
 #include "Platform/Linux/LinuxWindow.h"
 
@@ -13,7 +15,6 @@
 
 #include "Platform/OpenGL/OpenGlContext.h"
 
-#include <imgui.h>
 
 namespace Krispy {
     static bool s_GLFWInitialized = false;
@@ -51,6 +52,7 @@ namespace Krispy {
             s_GLFWInitialized = true;
         }
 
+        DEBUG_WINDOW_HINT();
         m_Window = glfwCreateWindow((int)props.Width, (int) props.Height, m_Data.Title.c_str(), nullptr, nullptr);
         glfwMakeContextCurrent(m_Window);
 
