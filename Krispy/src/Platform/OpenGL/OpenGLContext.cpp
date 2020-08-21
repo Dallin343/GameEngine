@@ -3,7 +3,7 @@
 //
 
 #include "Krispy/Core/Base.h"
-#include "Platform/OpenGL/OpenGlContext.h"
+#include "Platform/OpenGL/OpenGLContext.h"
 #include "Krispy/Debug/OpenGLDebug.h"
 
 #include <glad/glad.h>

@@ -41,8 +41,8 @@ add_library(Krispy
         Krispy/src/Krispy/Core/MouseCodes.h
         Krispy/src/Krispy/Core/Input.h
         Krispy/src/Platform/Linux/LinuxInput.cpp
-        Krispy/src/Platform/OpenGL/OpenGlContext.h
-        Krispy/src/Platform/OpenGL/OpenGlContext.cpp
+        Krispy/src/Platform/OpenGL/OpenGLContext.h
+        Krispy/src/Platform/OpenGL/OpenGLContext.cpp
         Krispy/src/Krispy/Renderer/GraphicsContext.h
         Krispy/src/Krispy/Renderer/Shader.cpp
         Krispy/src/Krispy/Renderer/Shader.h
@@ -50,13 +50,13 @@ add_library(Krispy
         Krispy/src/Krispy/Renderer/Buffer.h
         Krispy/src/Krispy/Renderer/Renderer.cpp
         Krispy/src/Krispy/Renderer/Renderer.h
-        Krispy/src/Platform/OpenGL/OpenGlBuffer.cpp
-        Krispy/src/Platform/OpenGL/OpenGlBuffer.h
+        Krispy/src/Platform/OpenGL/OpenGLBuffer.cpp
+        Krispy/src/Platform/OpenGL/OpenGLBuffer.h
         Krispy/src/Krispy/Renderer/VertexArray.cpp
         Krispy/src/Krispy/Renderer/VertexArray.h
-        Krispy/src/Platform/OpenGL/OpenGlVertexArray.cpp
-        Krispy/src/Platform/OpenGL/OpenGlVertexArray.h
-        Krispy/src/Krispy/Debug/OpenGLDebug.cpp Krispy/src/Krispy/Debug/OpenGLDebug.h)
+        Krispy/src/Platform/OpenGL/OpenGLVertexArray.cpp
+        Krispy/src/Platform/OpenGL/OpenGLVertexArray.h
+        Krispy/src/Krispy/Debug/OpenGLDebug.cpp Krispy/src/Krispy/Debug/OpenGLDebug.h Krispy/src/Krispy/Renderer/RenderCommand.cpp Krispy/src/Krispy/Renderer/RenderCommand.h Krispy/src/Krispy/Renderer/RendererApi.cpp Krispy/src/Krispy/Renderer/RendererApi.h Krispy/src/Platform/OpenGL/OpenGLRendererAPI.cpp Krispy/src/Platform/OpenGL/OpenGLRendererAPI.h)
 
 
 set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)

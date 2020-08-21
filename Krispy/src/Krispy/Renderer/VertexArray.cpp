@@ -5,13 +5,13 @@
 #include "VertexArray.h"
 
 #include "Krispy/Renderer/Renderer.h"
-#include "Platform/OpenGL/OpenGlVertexArray.h"
+#include "Platform/OpenGL/OpenGLVertexArray.h"
 
 namespace Krispy {
     VertexArray* VertexArray::Create() {
         switch (Renderer::GetAPI()) {
-            case RenderAPI::None: KRISPY_CORE_ASSERT(false, "RenderAPI::None not implemented!");
-            case RenderAPI::OpenGL: return new OpenGLVertexArray();
+            case RendererAPI::API::None: KRISPY_CORE_ASSERT(false, "RenderAPI::None not implemented!");
+            case RendererAPI::API::OpenGL: return new OpenGLVertexArray();
         }
 
         KRISPY_CORE_ASSERT(false, "Unknown RenderAPI!");

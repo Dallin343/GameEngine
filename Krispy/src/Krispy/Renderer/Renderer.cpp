@@ -5,7 +5,17 @@
 #include "Renderer.h"
 
 namespace Krispy {
-    RenderAPI Renderer::s_RenderAPI = RenderAPI::OpenGL;
+    void Renderer::BeginScene() {
+
+    }
+
+    void Renderer::Submit(const std::shared_ptr<VertexArray> &vertexArray) {
+        RenderCommand::DrawIndexed(vertexArray);
+    }
+
+    void Renderer::EndScene() {
+
+    }
 }
 
 

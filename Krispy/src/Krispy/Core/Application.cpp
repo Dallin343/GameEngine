@@ -6,7 +6,7 @@
 
 #include "Krispy/Renderer/Buffer.h"
 
-#include <glad/glad.h>
+#include "Krispy/Renderer/Renderer.h"
 
 namespace Krispy {
 
@@ -74,12 +74,14 @@ void main() {
 
     void Application::Run() {
         while (m_Running) {
-            glClearColor(0.2f, 0.2f, 0.2f, 1);
-            glClear(GL_COLOR_BUFFER_BIT);
+            RenderCommand::SetClearColor({0.2f, 0.2f, 0.2f, 1.0f});
+            RenderCommand::Clear();
+
+            Renderer::BeginScene();
 
             m_Shader->Bind();
-            m_VertexArray->Bind();
-            glDrawElements(GL_TRIANGLES, m_VertexArray->GetIndexBuffer()->GetCount(), GL_INT, nullptr);
+            Renderer::Submit(m_VertexArray);
+            Renderer::EndScene();
 
             for (Layer* layer : m_LayerStack) {
                 layer->OnUpdate();
@@ -101,7 +103,8 @@ void main() {
         dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(Application::OnWindowClose));
         dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FN(Application::OnWindowResize));
 
-        for (auto it = m_LayerStack.begin(); it != m_LayerStack.end();) {
+        // Iterate through layers, starting at the front, and going to the back
+        for (auto it = m_LayerStack.rbegin(); it != m_LayerStack.rend();) {
             if (event.Handled) {
                 break;
             }

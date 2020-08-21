@@ -2,7 +2,7 @@
 // Created by dallin on 8/20/20.
 //
 
-#include "OpenGlBuffer.h"
+#include "OpenGLBuffer.h"
 
 #include <glad/glad.h>
 

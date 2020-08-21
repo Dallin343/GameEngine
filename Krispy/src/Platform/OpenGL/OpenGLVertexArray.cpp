@@ -2,7 +2,7 @@
 // Created by dallin on 8/20/20.
 //
 
-#include "OpenGlVertexArray.h"
+#include "OpenGLVertexArray.h"
 
 #include <glad/glad.h>
 

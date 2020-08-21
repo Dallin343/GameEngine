@@ -3,17 +3,16 @@
 //
 
 #pragma once
+#include "Krispy/Renderer/RenderCommand.h"
 
 namespace Krispy {
-    enum class RenderAPI {
-        None = 0, OpenGL
-    };
     class Renderer {
     public:
-        static RenderAPI GetAPI() { return s_RenderAPI; };
+        static void BeginScene();
+        static void Submit(const std::shared_ptr<VertexArray>& vertexArray);
+        static void EndScene();
 
-    private:
-        static RenderAPI s_RenderAPI;
+        inline static RendererAPI::API GetAPI() { return RendererAPI::GetAPI(); };
     };
 }
 

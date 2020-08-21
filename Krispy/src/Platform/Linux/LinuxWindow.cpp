@@ -13,7 +13,7 @@
 #include "Krispy/Events/MouseEvent.h"
 #include "Krispy/Events/KeyEvent.h"
 
-#include "Platform/OpenGL/OpenGlContext.h"
+#include "Platform/OpenGL/OpenGLContext.h"
 
 
 namespace Krispy {
