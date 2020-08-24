@@ -22,7 +22,7 @@ namespace Krispy {
 
         void OnEvent(Event& event);
 
-        void OnUpdate() override;
+        void OnUpdate(Timestep ts) override;
 
         void OnImGuiRender() override;
 

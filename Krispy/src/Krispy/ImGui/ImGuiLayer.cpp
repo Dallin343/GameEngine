@@ -96,7 +96,7 @@ namespace Krispy {
         }
     }
 
-    void ImGuiLayer::OnUpdate() {
+    void ImGuiLayer::OnUpdate(Timestep ts) {
 //        ImGuiIO& io = ImGui::GetIO();
 //        Application& app = Application::Get();
 //        io.DisplaySize = ImVec2((float) app.GetWindow().GetWidth(), (float) app.GetWindow().GetHeight());

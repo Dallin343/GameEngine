@@ -35,14 +35,14 @@ namespace Krispy {
         bool OnWindowClose(WindowCloseEvent& event);
         bool OnWindowResize(WindowResizeEvent& event);
 
-        std::unique_ptr<Window> m_Window;
+    private:
+        Scope<Window> m_Window;
         bool m_Running = true;
 
         LayerStack m_LayerStack;
         ImGuiLayer* m_ImGuiLayer;
 
-        std::shared_ptr<VertexArray> m_VertexArray;
-        std::unique_ptr<Shader> m_Shader;
+        float m_LastFrameTime = 0.0f;
     private:
         static Application* s_Instance;
     };

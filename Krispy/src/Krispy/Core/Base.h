@@ -1,4 +1,5 @@
 #pragma once
+#include <memory>
 
 #pragma mark --Debug--
 
@@ -33,3 +34,14 @@
 //Used to make it clear whether an event handler reports that the event was handled or not.
 #define KRISPY_EVENT_HANDLED true
 #define KRISPY_EVENT_NOT_HANDLED false
+
+#pragma mark --Scope and Ref--
+
+namespace Krispy {
+
+    template<typename T>
+    using Scope = std::unique_ptr<T>;
+
+    template<typename T>
+    using Ref = std::shared_ptr<T>;
+}

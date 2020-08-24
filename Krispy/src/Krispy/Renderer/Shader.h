@@ -4,19 +4,22 @@
 
 #pragma once
 
+#include <string>
+#include <glm/glm.hpp>
+
 namespace Krispy {
     class Shader {
     public:
-        Shader(const std::string& vertexSrc, const std::string& fragmentSrc);
-        ~Shader();
+        virtual void Bind() const = 0;
+        virtual void Unbind() const = 0;
 
-        void Bind() const;
-        void Unbind() const;
+        virtual uint32_t GetRendererID() const = 0;
 
-        uint32_t GetRendererID() const { return m_RendererID; }
+        static Shader* Create(const std::string& vertexSrc, const std::string& fragmentSrc);
 
-    private:
-        uint32_t m_RendererID;
+#pragma mark --Upload Uniform Overloads--
+        virtual void UploadUniform(const std::string& name, const glm::mat4& uniform) = 0;
+
     };
 }
 

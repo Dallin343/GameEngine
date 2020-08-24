@@ -5,6 +5,7 @@
 #pragma once
 
 #include "Krispy/Events/Event.h"
+#include "Timestep.h"
 
 namespace Krispy {
     class Layer: public Debuggable {
@@ -14,7 +15,7 @@ namespace Krispy {
 
         virtual void OnAttach() {}
         virtual void OnDetach() {}
-        virtual void OnUpdate() {}
+        virtual void OnUpdate(Timestep ts) {}
         virtual void OnEvent(Event& event) {}
         virtual void OnImGuiRender() {}
 

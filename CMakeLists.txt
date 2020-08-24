@@ -56,15 +56,24 @@ add_library(Krispy
         Krispy/src/Krispy/Renderer/VertexArray.h
         Krispy/src/Platform/OpenGL/OpenGLVertexArray.cpp
         Krispy/src/Platform/OpenGL/OpenGLVertexArray.h
-        Krispy/src/Krispy/Debug/OpenGLDebug.cpp Krispy/src/Krispy/Debug/OpenGLDebug.h Krispy/src/Krispy/Renderer/RenderCommand.cpp Krispy/src/Krispy/Renderer/RenderCommand.h Krispy/src/Krispy/Renderer/RendererApi.cpp Krispy/src/Krispy/Renderer/RendererApi.h Krispy/src/Platform/OpenGL/OpenGLRendererAPI.cpp Krispy/src/Platform/OpenGL/OpenGLRendererAPI.h)
+        Krispy/src/Krispy/Debug/OpenGLDebug.cpp
+        Krispy/src/Krispy/Debug/OpenGLDebug.h
+        Krispy/src/Krispy/Renderer/RenderCommand.cpp
+        Krispy/src/Krispy/Renderer/RenderCommand.h
+        Krispy/src/Krispy/Renderer/RendererApi.cpp
+        Krispy/src/Krispy/Renderer/RendererApi.h
+        Krispy/src/Platform/OpenGL/OpenGLRendererAPI.cpp
+        Krispy/src/Platform/OpenGL/OpenGLRendererAPI.h
+        Krispy/src/Krispy/Renderer/OrthographicCamera.cpp
+        Krispy/src/Krispy/Renderer/OrthographicCamera.h
+        Krispy/src/Platform/OpenGL/OpenGlShader.cpp
+        Krispy/src/Platform/OpenGL/OpenGlShader.h Krispy/src/Krispy/Core/Timestep.h)
 
 
 set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 add_subdirectory(Krispy/vendor/glfw)
-
-add_subdirectory(Krispy/vendor/glm)
 
 add_library(GLAD STATIC Krispy/vendor/glad/src/glad.c Krispy/vendor/glad/include/glad/glad.h)
 
@@ -102,6 +111,9 @@ target_precompile_headers(Krispy
         )
 
 find_package(OpenGL REQUIRED)
+
+set(glm_DIR Krispy/vendor/glm/cmake/glm)
+find_package(glm REQUIRED)
 target_link_libraries(Krispy PRIVATE glfw OpenGL::GL GLAD ImGui glm::glm)
 
 # Sandbox
