@@ -38,8 +38,10 @@ namespace Krispy {
             Timestep ts = time - m_LastFrameTime;
             m_LastFrameTime = time;
 
-            for (Layer* layer : m_LayerStack) {
-                layer->OnUpdate(ts);
+            if (!m_Minimized) {
+                for (Layer* layer : m_LayerStack) {
+                    layer->OnUpdate(ts);
+                }
             }
 
             m_ImGuiLayer->Begin();
@@ -47,6 +49,7 @@ namespace Krispy {
                 layer->OnImGuiRender();
             }
             m_ImGuiLayer->End();
+
 
             m_Window->OnUpdate();
         }
@@ -84,6 +87,15 @@ namespace Krispy {
     }
 
     bool Application::OnWindowResize(WindowResizeEvent &event) {
+        KRISPY_CORE_INFO("{0}, {1}", event.GetWidth(), event.GetHeight());
+        if (event.GetWidth() == 0 || event.GetHeight() == 0) {
+            m_Minimized = true;
+            return false;
+        }
+
+        m_Minimized = false;
+        Renderer::OnWindowResize(event.GetWidth(), event.GetHeight());
+
         return false;
     }
 }

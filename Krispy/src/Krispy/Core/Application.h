@@ -37,6 +37,7 @@ namespace Krispy {
 
     private:
         Scope<Window> m_Window;
+        bool m_Minimized = false;
         bool m_Running = true;
 
         LayerStack m_LayerStack;

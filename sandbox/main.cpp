@@ -10,7 +10,7 @@
 
 class ExampleLayer: public Krispy::Layer {
 public:
-    ExampleLayer() : Layer("Example"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f) {
+    ExampleLayer() : Layer("Example"), m_CameraController(1280.f / 720.f, true) {
         m_TriangleVA = Krispy::VertexArray::Create();
 
         float triangleVertices[3 * 3] = {
@@ -118,13 +118,12 @@ void main() {
 
     void OnUpdate(Krispy::Timestep ts) override {
 
+        m_CameraController.OnUpdate(ts);
+
         Krispy::RenderCommand::SetClearColor({0.2f, 0.2f, 0.2f, 1.0f});
         Krispy::RenderCommand::Clear();
 
-        m_Camera.SetPosition(m_CameraPosition);
-        m_Camera.SetRotation(m_CameraRotation);
-
-        Krispy::Renderer::BeginScene(m_Camera);
+        Krispy::Renderer::BeginScene(m_CameraController.GetCamera());
 
         glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
@@ -158,7 +157,7 @@ void main() {
     }
 
     void OnEvent(Krispy::Event &event) override {
-
+        m_CameraController.OnEvent(event);
     }
 
 private:
@@ -170,11 +169,7 @@ private:
     Krispy::Ref<Krispy::Texture2D> m_Texture, m_ChernoTexture;
 
 
-    Krispy::OrthographicCamera m_Camera;
-    glm::vec3 m_CameraPosition = {0.0f, 0.0f, 0.0f};
-    float m_CameraRotation = 0.0f;
-    float m_CameraMoveSpeed = 1.0f;
-    float m_CameraRotationSpeed = 180.0f;
+    Krispy::OrthographicCameraController m_CameraController;
 
     glm::vec3 m_SquareColor = {0.0f, 0.5f, 0.5f};
 };
