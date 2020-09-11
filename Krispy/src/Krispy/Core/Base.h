@@ -3,6 +3,10 @@
 
 #pragma mark --Debug--
 
+#if defined(KRISPY_PLATFORM_LINUX)
+    #define KRISPY_PLATFORM_NEWLINE "\n"
+#endif
+
 #ifdef KRISPY_DEBUG
     #if defined(KRISPY_PLATFORM_LINUX)
         #include <signal.h>

@@ -8,10 +8,11 @@
 #include "Platform/OpenGL/OpenGLVertexArray.h"
 
 namespace Krispy {
-    VertexArray* VertexArray::Create() {
+
+    Ref<VertexArray> VertexArray::Create() {
         switch (Renderer::GetAPI()) {
-            case RendererAPI::API::None: KRISPY_CORE_ASSERT(false, "RenderAPI::None not implemented!");
-            case RendererAPI::API::OpenGL: return new OpenGLVertexArray();
+            case RendererAPI::API::None: KRISPY_CORE_ASSERT(false, "RenderAPI::None not implemented!"); break;
+            case RendererAPI::API::OpenGL: return std::make_shared<OpenGLVertexArray>();
         }
 
         KRISPY_CORE_ASSERT(false, "Unknown RenderAPI!");
