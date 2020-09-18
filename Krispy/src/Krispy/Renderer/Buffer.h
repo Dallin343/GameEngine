@@ -146,7 +146,7 @@ namespace Krispy {
     class UniformBuffer {
     public:
         virtual const UniformBufferLayout& GetLayout() const = 0;
-        virtual void SetLayout(std::initializer_list<BufferElement>& elements) = 0;
+        virtual void SetLayout(const std::initializer_list<BufferElement>& elements) = 0;
 
         virtual void BindShader(const std::string& uniformBlockName, const Ref<Shader>& shader, uint32_t bindPoint = 0) = 0;
         virtual void Bind() const = 0;
@@ -166,6 +166,6 @@ namespace Krispy {
         virtual void SetMat3(const std::string& name, const glm::mat3& value) = 0;
         virtual void SetMat4(const std::string& name, const glm::mat4& value) = 0;
 
-        static Ref<UniformBuffer> Create(std::initializer_list<BufferElement>& elements);
+        static Ref<UniformBuffer> Create(const std::initializer_list<BufferElement>& elements);
     };
 }

@@ -105,7 +105,7 @@ namespace Krispy {
     }
 
 #pragma mark --OpenGLUniformBuffer--
-    OpenGLUniformBuffer::OpenGLUniformBuffer(std::initializer_list<BufferElement> &elements) : m_RendererID(0) {
+    OpenGLUniformBuffer::OpenGLUniformBuffer(const std::initializer_list<BufferElement> &elements) : m_RendererID(0) {
         KRISPY_PROFILE_FUNCTION();
         CreateLayout(elements);
 
@@ -115,11 +115,11 @@ namespace Krispy {
         glBindBuffer(GL_UNIFORM_BUFFER, 0);
     }
 
-    void OpenGLUniformBuffer::SetLayout(std::initializer_list<BufferElement> &elements) {
+    void OpenGLUniformBuffer::SetLayout(const std::initializer_list<BufferElement> &elements) {
         CreateLayout(elements);
     }
 
-    void OpenGLUniformBuffer::CreateLayout(std::initializer_list<BufferElement> &elements) {
+    void OpenGLUniformBuffer::CreateLayout(const std::initializer_list<BufferElement> &elements) {
         KRISPY_PROFILE_FUNCTION();
 
         std::unordered_map<std::string, BufferElement> elementMap;

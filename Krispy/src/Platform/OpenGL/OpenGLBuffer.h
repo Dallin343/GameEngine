@@ -44,7 +44,7 @@ namespace Krispy {
 
     class OpenGLUniformBuffer: public UniformBuffer {
     public:
-        OpenGLUniformBuffer(std::initializer_list<BufferElement>& elements);
+        OpenGLUniformBuffer(const std::initializer_list<BufferElement>& elements);
 
         void BindShader(const std::string &uniformBlockName, const Ref <Shader> &shader, uint32_t bindPoint) override;
 
@@ -52,7 +52,7 @@ namespace Krispy {
         void Unbind() const override;
 
         const UniformBufferLayout& GetLayout() const override { return m_Layout; }
-        void SetLayout(std::initializer_list<BufferElement> &elements) override;
+        void SetLayout(const std::initializer_list<BufferElement> &elements) override;
 
         void SetBool(const std::string &name, int value) override;
         void SetInt(const std::string &name, int value) override;
@@ -68,7 +68,7 @@ namespace Krispy {
         void SetMat4(const std::string &name, const glm::mat4 &value) override;
 
     private:
-        void CreateLayout(std::initializer_list<BufferElement> &elements);
+        void CreateLayout(const std::initializer_list<BufferElement> &elements);
         void SetData(const std::string &name, const void* value);
     private:
         uint32_t m_RendererID;

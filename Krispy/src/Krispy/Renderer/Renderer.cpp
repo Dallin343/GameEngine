@@ -22,15 +22,23 @@ namespace Krispy {
         Ref<VertexArray> TriangleVertexArray;
         Ref<VertexBuffer> TriangleVertexBuffer;
         Ref<IndexBuffer> TriangleIndexBuffer;
+
+        Ref<UniformBuffer> UniformBufferObject;
     };
 
     static RenderData s_Data;
+
+    static bool s_BoundShader = false;
 
     void Renderer::Init() {
         KRISPY_PROFILE_FUNCTION();
 
         RenderCommand::Init();
         Renderer2D::Init();
+
+        s_Data.UniformBufferObject = UniformBuffer::Create({
+            {ShaderDataType::Mat4, "u_ViewProjection", 1},
+        });
 
         float triVertices[] = {
                 0.5f, 0.5f, 0.0f, 1.0f, 1.0f, // Top right
@@ -138,6 +146,13 @@ namespace Krispy {
     }
 
     void Renderer::DrawCube(const Ref<Shader> &shader, const std::vector<Ref<Texture2D>>& textures, const glm::vec3& position) {
+        if (!s_BoundShader) {
+            s_BoundShader = true;
+
+            s_Data.UniformBufferObject->Bind();
+            s_Data.UniformBufferObject->BindShader("Material", shader);
+        }
+
         glm::mat4 model = glm::mat4(1.0f);
         model = glm::translate(model, position);
         model = glm::rotate(model, glm::radians(50.0f), glm::vec3(0.5f, 1.0f, 0.0f));
@@ -153,13 +168,15 @@ namespace Krispy {
         shader->SetInt("u_Material.specular", 1);
         shader->SetFloat("u_Material.shininess", 128.0f);
 
-        shader->SetFloat3("u_Light.position", {1.0f, -2.0f, 1.0f});
+        shader->SetFloat3("u_Light.position", {0.0f, 1.0f, 3.0f});
         shader->SetFloat3("u_Light.ambient", {0.2f, 0.2f, 0.2f});
         shader->SetFloat3("u_Light.diffuse", {1.0f, 1.0f, 1.0f});
         shader->SetFloat3("u_Light.specular", {0.8f, 0.8f, 0.8f});
 
+        s_Data.UniformBufferObject->SetMat4("u_ViewProjection", m_SceneData->ViewProjectionMatrix);
+        //s_Data.UniformBufferObject->SetFloat3("u_Color", glm::vec3(1.0f, 0.2f, 0.3f));
 
-        shader->SetMat4("u_ViewProjection", m_SceneData->ViewProjectionMatrix);
+        //shader->SetMat4("u_ViewProjection", m_SceneData->ViewProjectionMatrix);
         shader->SetMat4("u_Model", model);
         shader->SetFloat3("u_ViewPosition", m_SceneData->ViewPosition);
 

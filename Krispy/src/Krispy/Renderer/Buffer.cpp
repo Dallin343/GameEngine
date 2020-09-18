@@ -39,7 +39,7 @@ namespace Krispy {
         return nullptr;
     }
 
-    Ref<UniformBuffer> UniformBuffer::Create(std::initializer_list<BufferElement>& elements) {
+    Ref<UniformBuffer> UniformBuffer::Create(const std::initializer_list<BufferElement>& elements) {
         switch (Renderer::GetAPI()) {
             case RendererAPI::API::None: KRISPY_CORE_ASSERT(false, "RenderAPI::None not implemented!"); return nullptr;
             case RendererAPI::API::OpenGL: return CreateRef<OpenGLUniformBuffer>(elements);
