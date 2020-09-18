@@ -26,22 +26,32 @@ namespace Krispy {
     }
 
     OpenGLVertexArray::OpenGLVertexArray() {
+        KRISPY_PROFILE_FUNCTION();
+
         glCreateVertexArrays(1, &m_RenderID);
     }
 
     OpenGLVertexArray::~OpenGLVertexArray() {
+        KRISPY_PROFILE_FUNCTION();
+
         glDeleteVertexArrays(1, &m_RenderID);
     }
 
     void OpenGLVertexArray::Bind() {
+        KRISPY_PROFILE_FUNCTION();
+
         glBindVertexArray(m_RenderID);
     }
 
     void OpenGLVertexArray::Unbind() {
+        KRISPY_PROFILE_FUNCTION();
+
         glBindVertexArray(0);
     }
 
     void OpenGLVertexArray::AddVertexBuffer(const Ref<VertexBuffer>& vertexBuffer) {
+        KRISPY_PROFILE_FUNCTION();
+
         KRISPY_CORE_ASSERT(vertexBuffer->GetLayout().GetElements().size(), "Vertex Buffer has no layout!");
 
         glBindVertexArray(m_RenderID);
@@ -66,6 +76,8 @@ namespace Krispy {
     }
 
     void OpenGLVertexArray::SetIndexBuffer(const Ref<IndexBuffer>& indexBuffer) {
+        KRISPY_PROFILE_FUNCTION();
+
         glBindVertexArray(m_RenderID);
         indexBuffer->Bind();
 

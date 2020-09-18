@@ -12,7 +12,7 @@ namespace Krispy {
     Ref<VertexArray> VertexArray::Create() {
         switch (Renderer::GetAPI()) {
             case RendererAPI::API::None: KRISPY_CORE_ASSERT(false, "RenderAPI::None not implemented!"); break;
-            case RendererAPI::API::OpenGL: return std::make_shared<OpenGLVertexArray>();
+            case RendererAPI::API::OpenGL: return CreateRef<OpenGLVertexArray>();
         }
 
         KRISPY_CORE_ASSERT(false, "Unknown RenderAPI!");

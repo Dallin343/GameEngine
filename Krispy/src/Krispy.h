@@ -8,6 +8,7 @@
 #include "Krispy/Core/Base.h"
 #pragma mark -- --Debug
 #include "Krispy/Debug/Debuggable.h"
+#include "Krispy/Debug/Instrumentor.h"
 
 #pragma mark --Core--
 #include "Krispy/Core/Application.h"
@@ -34,18 +35,16 @@
 
 #pragma mark --Renderer--
 #include "Krispy/Renderer/Renderer.h"
+#include "Krispy/Renderer/Renderer2D.h"
 #include "Krispy/Renderer/RenderCommand.h"
 
 #include "Krispy/Renderer/Buffer.h"
 #include "Krispy/Renderer/Shader.h"
 #include "Krispy/Renderer/Texture.h"
 #include "Krispy/Renderer/VertexArray.h"
+#include "Krispy/Materials/Material.h"
 
+#pragma mark -- --Cameras
 #include "Krispy/Renderer/OrthographicCamera.h"
-
-
-#pragma mark --Entry Point--
-// ENTRY POINT //
-#include "Krispy/Core/Entry.h"
 
 

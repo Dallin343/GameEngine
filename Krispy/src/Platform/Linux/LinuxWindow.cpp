@@ -3,6 +3,8 @@
 //
 #ifdef KRISPY_DEBUG
 #define DEBUG_WINDOW_HINT() glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GLFW_TRUE)
+#else
+#define DEBUG_WINDOW_HINT()
 #endif
 
 #include "Platform/Linux/LinuxWindow.h"
@@ -36,6 +38,8 @@ namespace Krispy {
     }
 
     void LinuxWindow::Init(const WindowProps &props) {
+        KRISPY_PROFILE_FUNCTION();
+
         m_Data.Title = props.Title;
         m_Data.Width = props.Width;
         m_Data.Height = props.Height;
@@ -44,8 +48,11 @@ namespace Krispy {
 
         if (!s_GLFWInitialized) {
 
-            int success = glfwInit();
-            KRISPY_CORE_ASSERT(success, "Could not initialize GLFW!");
+            {
+                KRISPY_PROFILE_SCOPE("GLFW Init");
+                int success = glfwInit();
+                KRISPY_CORE_ASSERT(success, "Could not initialize GLFW!");
+            }
 
             glfwSetErrorCallback(GLFWErrorCallback);
 
@@ -53,7 +60,11 @@ namespace Krispy {
         }
 
         DEBUG_WINDOW_HINT();
-        m_Window = glfwCreateWindow((int)props.Width, (int) props.Height, m_Data.Title.c_str(), nullptr, nullptr);
+        {
+            KRISPY_PROFILE_SCOPE("GLFW Create Window");
+            m_Window = glfwCreateWindow((int)props.Width, (int) props.Height, m_Data.Title.c_str(), nullptr, nullptr);
+        }
+
         glfwMakeContextCurrent(m_Window);
 
         m_Context = new OpenGLContext(m_Window);
@@ -140,11 +151,15 @@ namespace Krispy {
     }
 
     void LinuxWindow::OnUpdate() {
+        KRISPY_PROFILE_FUNCTION();
+
         glfwPollEvents();
         m_Context->SwapBuffers();
     }
 
     void LinuxWindow::SetVSync(bool enable) {
+        KRISPY_PROFILE_FUNCTION();
+
         if (enable) {
             glfwSwapInterval(1);
         } else {
@@ -159,6 +174,8 @@ namespace Krispy {
     }
 
     void LinuxWindow::Shutdown() {
+        KRISPY_PROFILE_FUNCTION();
+
         glfwDestroyWindow(m_Window);
     }
 }

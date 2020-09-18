@@ -17,6 +17,8 @@ namespace Krispy {
     Application* Application::s_Instance = nullptr;
 
     Application::Application() {
+        KRISPY_PROFILE_FUNCTION();
+
         s_Instance = this;
 
         m_Window = Scope<Window>(Window::Create());
@@ -38,17 +40,24 @@ namespace Krispy {
             Timestep ts = time - m_LastFrameTime;
             m_LastFrameTime = time;
 
-            if (!m_Minimized) {
-                for (Layer* layer : m_LayerStack) {
-                    layer->OnUpdate(ts);
+            {
+                KRISPY_PROFILE_SCOPE("Layer OnUpdate");
+                if (!m_Minimized) {
+                    for (Layer* layer : m_LayerStack) {
+                        layer->OnUpdate(ts);
+                    }
                 }
             }
 
-            m_ImGuiLayer->Begin();
-            for (Layer* layer : m_LayerStack) {
-                layer->OnImGuiRender();
+            {
+                KRISPY_PROFILE_SCOPE("ImGuiLayer OnUpdate");
+                m_ImGuiLayer->Begin();
+                for (Layer* layer : m_LayerStack) {
+                    layer->OnImGuiRender();
+                }
+                m_ImGuiLayer->End();
             }
-            m_ImGuiLayer->End();
+
 
 
             m_Window->OnUpdate();

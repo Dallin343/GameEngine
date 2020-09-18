@@ -11,6 +11,8 @@ include_directories(
         Krispy/vendor/glad/include
         Krispy/vendor/imgui
         Krispy/vendor/glm
+        Krispy/vendor/assimp/build/include
+        Krispy/vendor/assimp/include
         Krispy/src
 )
 
@@ -67,14 +69,34 @@ add_library(Krispy
         Krispy/src/Platform/OpenGL/OpenGLRendererAPI.h
         Krispy/src/Krispy/Renderer/OrthographicCamera.cpp
         Krispy/src/Krispy/Renderer/OrthographicCamera.h
-        Krispy/src/Platform/OpenGL/OpenGlShader.cpp
-        Krispy/src/Platform/OpenGL/OpenGlShader.h
+        Krispy/src/Platform/OpenGL/OpenGLShader.cpp
+        Krispy/src/Platform/OpenGL/OpenGLShader.h
         Krispy/src/Krispy/Core/Timestep.h
         Krispy/src/Krispy/Renderer/Texture.cpp
         Krispy/src/Krispy/Renderer/Texture.h
-        Krispy/src/Platform/OpenGL/OpenGlTexture.cpp
-        Krispy/src/Platform/OpenGL/OpenGlTexture.h
-        Krispy/vendor/stb/stb_image.cpp Krispy/src/Krispy/Core/OrthographicCameraController.cpp Krispy/src/Krispy/Core/OrthographicCameraController.h)
+        Krispy/src/Platform/OpenGL/OpenGLTexture.cpp
+        Krispy/src/Platform/OpenGL/OpenGLTexture.h
+        Krispy/vendor/stb/stb_image.cpp
+        Krispy/src/Krispy/Core/OrthographicCameraController.cpp
+        Krispy/src/Krispy/Core/OrthographicCameraController.h
+        Krispy/src/Krispy/Renderer/Renderer2D.cpp
+        Krispy/src/Krispy/Renderer/Renderer2D.h
+        Krispy/src/Krispy/Debug/Instrumentor.h
+        Krispy/src/Krispy/Renderer/Mesh.cpp
+        Krispy/src/Krispy/Renderer/Mesh.h
+        Krispy/src/Platform/OpenGL/OpenGLMesh.cpp
+        Krispy/src/Platform/OpenGL/OpenGLMesh.h
+        Krispy/src/Krispy/Renderer/Model.cpp
+        Krispy/src/Krispy/Renderer/Model.h
+        Krispy/src/Krispy/Renderer/PerspectiveCamera.cpp
+        Krispy/src/Krispy/Renderer/PerspectiveCamera.h
+        Krispy/src/Krispy/Core/PerspectiveCameraController.cpp
+        Krispy/src/Krispy/Core/PerspectiveCameraController.h
+        Krispy/src/Krispy/Materials/Material.cpp
+        Krispy/src/Krispy/Materials/Material.h
+        Krispy/src/Platform/OpenGL/OpenGLMaterial.cpp
+        Krispy/src/Platform/OpenGL/OpenGLMaterial.h
+        Krispy/src/Krispy/Core/Types.h Krispy/src/Krispy/Renderer/Renderer3D.cpp Krispy/src/Krispy/Renderer/Renderer3D.h)
 
 
 set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
@@ -83,6 +105,9 @@ set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 add_subdirectory(Krispy/vendor/glfw)
 
 add_subdirectory(Krispy/vendor/spdlog)
+
+set(BUILD_SHARED_LIBS OFF CACHE BOOL "" FORCE)
+add_subdirectory(Krispy/vendor/assimp)
 
 add_library(GLAD STATIC Krispy/vendor/glad/src/glad.c Krispy/vendor/glad/include/glad/glad.h)
 
@@ -116,6 +141,8 @@ target_precompile_headers(Krispy
         <cstdint>
         Krispy/src/Krispy/Core/Base.h
         Krispy/src/Krispy/Debug/Debuggable.h
+        Krispy/src/Krispy/Debug/Instrumentor.h
+        Krispy/src/Krispy/Core/Types.h
         Krispy/src/Krispy/Core/Log.h
         )
 
@@ -123,10 +150,10 @@ find_package(OpenGL REQUIRED)
 
 set(glm_DIR Krispy/vendor/glm/cmake/glm)
 find_package(glm REQUIRED)
-target_link_libraries(Krispy PRIVATE glfw OpenGL::GL GLAD ImGui glm::glm spdlog::spdlog)
+target_link_libraries(Krispy PRIVATE glfw OpenGL::GL GLAD ImGui glm::glm spdlog::spdlog assimp)
 
 # Sandbox
-add_executable(Sandbox sandbox/main.cpp)
+add_executable(Sandbox sandbox/src/Sandbox.cpp sandbox/src/Sandbox2D.cpp sandbox/src/Sandbox2D.h sandbox/src/Sandbox3D.cpp sandbox/src/Sandbox3D.h)
 target_link_libraries(Sandbox PRIVATE Krispy glm::glm)
 
 

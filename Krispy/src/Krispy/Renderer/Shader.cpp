@@ -5,13 +5,13 @@
 #include "Shader.h"
 #include "Krispy/Renderer/RendererApi.h"
 
-#include "Platform/OpenGL/OpenGlShader.h"
+#include "Platform/OpenGL/OpenGLShader.h"
 
 namespace Krispy {
     Ref<Shader> Shader::Create(const std::string &path) {
         switch (RendererAPI::GetAPI()) {
             case RendererAPI::API::None: KRISPY_CORE_ASSERT(false, "RendererAPI::API::None is not implemented!"); break;
-            case RendererAPI::API::OpenGL: return std::make_shared<OpenGLShader>(path);
+            case RendererAPI::API::OpenGL: return CreateRef<OpenGLShader>(path);
         }
 
         KRISPY_CORE_ASSERT(false, "RendererAPI is unknown!");
@@ -22,7 +22,7 @@ namespace Krispy {
     Shader::Create(const std::string &name, const std::string &vertexSrc, const std::string &fragmentSrc) {
         switch (RendererAPI::GetAPI()) {
             case RendererAPI::API::None: KRISPY_CORE_ASSERT(false, "RendererAPI::API::None is not implemented!"); break;
-            case RendererAPI::API::OpenGL: return std::make_shared<OpenGLShader>(name, vertexSrc, fragmentSrc);
+            case RendererAPI::API::OpenGL: return CreateRef<OpenGLShader>(name, vertexSrc, fragmentSrc);
         }
 
         KRISPY_CORE_ASSERT(false, "RendererAPI is unknown!");

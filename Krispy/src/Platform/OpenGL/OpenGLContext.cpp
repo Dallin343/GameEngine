@@ -19,6 +19,8 @@ namespace Krispy {
     }
 
     void OpenGLContext::Init() {
+        KRISPY_PROFILE_FUNCTION();
+
         glfwMakeContextCurrent(m_Window);
         int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
         KRISPY_CORE_ASSERT(status, "Could not initialize GLAD!");
